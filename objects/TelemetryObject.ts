@@ -1,4 +1,4 @@
-import {TelemetryInternal} from "../Telemetry";
+import {TelemetryInternal} from '../Telemetry';
 
 export class TelemetryObject implements TelemetryInternal {
   class: string;
@@ -20,8 +20,8 @@ export class TelemetryObject implements TelemetryInternal {
   pressure: number;
   humidity: number;
   temp_extern: number;
-  timestamp:number;
-  type:string;
+  timestamp: number;
+  type: string;
 
   // init the data
   constructor(dbData?: TelemetryInternal) {
