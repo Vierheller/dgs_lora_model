@@ -1,4 +1,4 @@
-import {TelemetryInternal} from '../Telemetry';
+import {TelemetryInternal} from "../Telemetry";
 
 export class TelemetryObject implements TelemetryInternal {
   class: string;
@@ -20,8 +20,8 @@ export class TelemetryObject implements TelemetryInternal {
   pressure: number;
   humidity: number;
   temp_extern: number;
-  timestamp: number;
-  type: string;
+  timestamp:number;
+  type:string;
 
   // init the data
   constructor(dbData?: TelemetryInternal) {
@@ -90,7 +90,7 @@ export class TelemetryObject implements TelemetryInternal {
 
   getTime(): TelemetryElement {
     return {
-      parameter: 'Zeit',
+      parameter: 'Zeit (Gesendet)',
       value: this.time,
       unit: ''
     };
@@ -204,6 +204,16 @@ export class TelemetryObject implements TelemetryInternal {
     return {
       parameter: 'Zeitstempel',
       value: this.timestamp,
+      unit: ''
+    };
+  }
+
+  getTimestampConverted(): TelemetryElement {
+    let date = new Date(this.timestamp);
+
+    return {
+      parameter: 'Zeit (Empfangen)',
+      value: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
       unit: ''
     };
   }
