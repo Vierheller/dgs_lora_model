@@ -1,4 +1,4 @@
-export interface Image{
+export interface Image {
   timestamp: number;
   type: string;
   filename: string;
