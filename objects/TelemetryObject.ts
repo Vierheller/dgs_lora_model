@@ -1,4 +1,4 @@
-import {TelemetryInternal} from "../Telemetry";
+import {TelemetryInternal} from '../Telemetry';
 
 export class TelemetryObject implements TelemetryInternal {
   public class: string;
@@ -25,12 +25,12 @@ export class TelemetryObject implements TelemetryInternal {
 
   // init the data
   constructor(dbData?: TelemetryInternal) {
-    dbData ? this.class = dbData.class : this.class = "";
+    dbData ? this.class = dbData.class : this.class = '';
     dbData ? this.index = dbData.index : this.index = 0;
     dbData ? this.channel = dbData.channel : this.channel = 0;
-    dbData ? this.payload = dbData.payload : this.payload = "";
+    dbData ? this.payload = dbData.payload : this.payload = '';
     dbData ? this.package_counter = dbData.package_counter : this.package_counter = 0;
-    dbData ? this.time = dbData.time : this.time = "";
+    dbData ? this.time = dbData.time : this.time = '';
     dbData ? this.lat = dbData.lat : this.lat = 0;
     dbData ? this.lon = dbData.lon : this.lon = 0;
     dbData ? this.alt = dbData.alt : this.alt = 0;
@@ -45,166 +45,166 @@ export class TelemetryObject implements TelemetryInternal {
     dbData ? this.humidity = dbData.humidity : this.humidity = 0;
     dbData ? this.temp_extern = dbData.temp_extern : this.temp_extern = 0;
     dbData ? this.timestamp = dbData.timestamp : this.timestamp = 0;
-    dbData ? this.type = dbData.type : this.type = "";
+    dbData ? this.type = dbData.type : this.type = '';
   }
 
   public getClass(): TelemetryElement {
     return {
-      parameter: "Klasse",
+      parameter: 'Klasse',
       value: this.class,
-      unit: "",
+      unit: '',
     };
   }
 
   public getIndex(): TelemetryElement {
     return {
-      parameter: "Index",
+      parameter: 'Index',
       value: this.index,
-      unit: "",
+      unit: '',
     };
   }
 
   public getChannel(): TelemetryElement {
     return {
-      parameter: "Kanal",
+      parameter: 'Kanal',
       value: this.channel,
-      unit: "",
+      unit: '',
     };
   }
 
   public getPayload(): TelemetryElement {
     return {
-      parameter: "Payload",
+      parameter: 'Payload',
       value: this.payload,
-      unit: "",
+      unit: '',
     };
   }
 
   public getPackageCounter(): TelemetryElement {
     return {
-      parameter: "Paketnummer",
+      parameter: 'Paketnummer',
       value: this.package_counter,
-      unit: "",
+      unit: '',
     };
   }
 
   public getTime(): TelemetryElement {
     return {
-      parameter: "Zeit (Gesendet)",
+      parameter: 'Zeit (Gesendet)',
       value: this.time,
-      unit: "",
+      unit: '',
     };
   }
 
   public getLat(): TelemetryElement {
     return {
-      parameter: "Breitengrad",
+      parameter: 'Breitengrad',
       value: this.lat,
-      unit: "°",
+      unit: '°',
     };
   }
 
   public getLon(): TelemetryElement {
     return {
-      parameter: "Längengrad",
+      parameter: 'Längengrad',
       value: this.lon,
-      unit: "°",
+      unit: '°',
     };
   }
 
   public getAlt(): TelemetryElement {
     return {
-      parameter: "Höhe",
+      parameter: 'Höhe',
       value: this.alt,
-      unit: "m",
+      unit: 'm',
     };
   }
 
   public getSpeed(): TelemetryElement {
     return {
-      parameter: "Geschwindigkeit",
+      parameter: 'Geschwindigkeit',
       value: this.speed,
-      unit: "km/h",
+      unit: 'km/h',
     };
   }
 
   public getDirection(): TelemetryElement {
     return {
-      parameter: "Richtung",
+      parameter: 'Richtung',
       value: this.direction,
-      unit: "°",
+      unit: '°',
     };
   }
 
   public getSatellites(): TelemetryElement {
     return {
-      parameter: "Satelliten",
+      parameter: 'Satelliten',
       value: this.satellites,
-      unit: "",
+      unit: '',
     };
   }
 
   public getTempChip(): TelemetryElement {
     return {
-      parameter: "Temperatur PI",
+      parameter: 'Temperatur PI',
       value: this.temp_chip,
-      unit: "°C",
+      unit: '°C',
     };
   }
 
   public getBatteryVoltage(): TelemetryElement {
     return {
-      parameter: "Akku Sapnnung",
+      parameter: 'Akku Sapnnung',
       value: this.battery_voltage,
-      unit: "V",
+      unit: 'V',
     };
   }
 
   public getCurrentVoltage(): TelemetryElement {
     return {
-      parameter: "Aktuelle Spannung",
+      parameter: 'Aktuelle Spannung',
       value: this.current_voltage,
-      unit: "V",
+      unit: 'V',
     };
   }
 
   public getTempCase(): TelemetryElement {
     return {
-      parameter: "Temperatur Gehäuse",
+      parameter: 'Temperatur Gehäuse',
       value: this.temp_case,
-      unit: "°C",
+      unit: '°C',
     };
   }
 
   public getPressure(): TelemetryElement {
     return {
-      parameter: "Luftdruck",
+      parameter: 'Luftdruck',
       value: this.pressure,
-      unit: "hPA",
+      unit: 'hPA',
     };
   }
 
   public getHumidity(): TelemetryElement {
     return {
-      parameter: "Luftfeuchtigkeit",
+      parameter: 'Luftfeuchtigkeit',
       value: this.humidity,
-      unit: "%",
+      unit: '%',
     };
   }
 
   public getTempExtern(): TelemetryElement {
     return {
-      parameter: "Temperatur Außen",
+      parameter: 'Temperatur Außen',
       value: this.temp_extern,
-      unit: "°C",
+      unit: '°C',
     };
   }
 
   public getTimestamp(): TelemetryElement {
     return {
-      parameter: "Zeitstempel",
+      parameter: 'Zeitstempel',
       value: this.timestamp,
-      unit: "",
+      unit: '',
     };
   }
 
@@ -212,17 +212,17 @@ export class TelemetryObject implements TelemetryInternal {
     const date = new Date(this.timestamp);
 
     return {
-      parameter: "Zeit (Empfangen)",
-      value: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
-      unit: "",
+      parameter: 'Zeit (Empfangen)',
+      value: date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
+      unit: '',
     };
   }
 
   public getType(): TelemetryElement {
     return {
-      parameter: "Typ",
+      parameter: 'Typ',
       value: this.type,
-      unit: "",
+      unit: '',
     };
   }
 }
