@@ -1,4 +1,4 @@
-import {isNegativeNumberLiteral} from 'tslint';
+import {isNegativeNumberLiteral} from "tslint";
 
 export interface TelemetryRaw {
     class: string;

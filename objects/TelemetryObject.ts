@@ -1,4 +1,5 @@
-import {TelemetryInternal} from '../Telemetry';
+import {TelemetryInternal} from "../Telemetry";
+import {telemetryDictonary} from "../config/telemetryDic";
 
 export class TelemetryObject implements TelemetryInternal {
   public class: string;
@@ -25,12 +26,12 @@ export class TelemetryObject implements TelemetryInternal {
 
   // init the data
   constructor(dbData?: TelemetryInternal) {
-    dbData ? this.class = dbData.class : this.class = '';
+    dbData ? this.class = dbData.class : this.class = "";
     dbData ? this.index = dbData.index : this.index = 0;
     dbData ? this.channel = dbData.channel : this.channel = 0;
-    dbData ? this.payload = dbData.payload : this.payload = '';
+    dbData ? this.payload = dbData.payload : this.payload = "";
     dbData ? this.package_counter = dbData.package_counter : this.package_counter = 0;
-    dbData ? this.time = dbData.time : this.time = '';
+    dbData ? this.time = dbData.time : this.time = "";
     dbData ? this.lat = dbData.lat : this.lat = 0;
     dbData ? this.lon = dbData.lon : this.lon = 0;
     dbData ? this.alt = dbData.alt : this.alt = 0;
@@ -45,166 +46,166 @@ export class TelemetryObject implements TelemetryInternal {
     dbData ? this.humidity = dbData.humidity : this.humidity = 0;
     dbData ? this.temp_extern = dbData.temp_extern : this.temp_extern = 0;
     dbData ? this.timestamp = dbData.timestamp : this.timestamp = 0;
-    dbData ? this.type = dbData.type : this.type = '';
+    dbData ? this.type = dbData.type : this.type = "";
   }
 
   public getClass(): TelemetryElement {
     return {
-      parameter: 'Klasse',
+      parameter: telemetryDictonary.class.name,
       value: this.class,
-      unit: '',
+      unit: telemetryDictonary.class.unit,
     };
   }
 
   public getIndex(): TelemetryElement {
     return {
-      parameter: 'Index',
+      parameter: telemetryDictonary.index.name,
       value: this.index,
-      unit: '',
+      unit: telemetryDictonary.index.unit,
     };
   }
 
   public getChannel(): TelemetryElement {
     return {
-      parameter: 'Kanal',
+      parameter: telemetryDictonary.channel.name,
       value: this.channel,
-      unit: '',
+      unit: telemetryDictonary.channel.unit,
     };
   }
 
   public getPayload(): TelemetryElement {
     return {
-      parameter: 'Payload',
+      parameter: telemetryDictonary.payload.name,
       value: this.payload,
-      unit: '',
+      unit: telemetryDictonary.payload.unit,
     };
   }
 
   public getPackageCounter(): TelemetryElement {
     return {
-      parameter: 'Paketnummer',
+      parameter: telemetryDictonary.package_counter.name,
       value: this.package_counter,
-      unit: '',
+      unit: telemetryDictonary.package_counter.unit,
     };
   }
 
   public getTime(): TelemetryElement {
     return {
-      parameter: 'Zeit (Gesendet)',
+      parameter: telemetryDictonary.time.name,
       value: this.time,
-      unit: '',
+      unit: telemetryDictonary.time.unit,
     };
   }
 
   public getLat(): TelemetryElement {
     return {
-      parameter: 'Breitengrad',
+      parameter: telemetryDictonary.lat.name,
       value: this.lat,
-      unit: '°',
+      unit: telemetryDictonary.lat.unit,
     };
   }
 
   public getLon(): TelemetryElement {
     return {
-      parameter: 'Längengrad',
+      parameter: telemetryDictonary.lon.name,
       value: this.lon,
-      unit: '°',
+      unit: telemetryDictonary.lon.name,
     };
   }
 
   public getAlt(): TelemetryElement {
     return {
-      parameter: 'Höhe',
+      parameter: telemetryDictonary.alt.name,
       value: this.alt,
-      unit: 'm',
+      unit: telemetryDictonary.alt.unit,
     };
   }
 
   public getSpeed(): TelemetryElement {
     return {
-      parameter: 'Geschwindigkeit',
+      parameter: telemetryDictonary.speed.name,
       value: this.speed,
-      unit: 'km/h',
+      unit: telemetryDictonary.speed.unit,
     };
   }
 
   public getDirection(): TelemetryElement {
     return {
-      parameter: 'Richtung',
+      parameter: telemetryDictonary.direction.name,
       value: this.direction,
-      unit: '°',
+      unit: telemetryDictonary.direction.unit,
     };
   }
 
   public getSatellites(): TelemetryElement {
     return {
-      parameter: 'Satelliten',
+      parameter: telemetryDictonary.satellites.name,
       value: this.satellites,
-      unit: '',
+      unit: telemetryDictonary.satellites.unit,
     };
   }
 
   public getTempChip(): TelemetryElement {
     return {
-      parameter: 'Temperatur PI',
+      parameter: telemetryDictonary.temp_chip.name,
       value: this.temp_chip,
-      unit: '°C',
+      unit: telemetryDictonary.temp_chip.unit,
     };
   }
 
   public getBatteryVoltage(): TelemetryElement {
     return {
-      parameter: 'Akku Sapnnung',
+      parameter: telemetryDictonary.battery_voltage.name,
       value: this.battery_voltage,
-      unit: 'V',
+      unit: telemetryDictonary.battery_voltage.unit,
     };
   }
 
   public getCurrentVoltage(): TelemetryElement {
     return {
-      parameter: 'Aktuelle Spannung',
+      parameter: telemetryDictonary.current_voltage.name,
       value: this.current_voltage,
-      unit: 'V',
+      unit: telemetryDictonary.current_voltage.unit,
     };
   }
 
   public getTempCase(): TelemetryElement {
     return {
-      parameter: 'Temperatur Gehäuse',
+      parameter: telemetryDictonary.temp_case.name,
       value: this.temp_case,
-      unit: '°C',
+      unit: telemetryDictonary.temp_case.unit,
     };
   }
 
   public getPressure(): TelemetryElement {
     return {
-      parameter: 'Luftdruck',
+      parameter: telemetryDictonary.pressure.name,
       value: this.pressure,
-      unit: 'hPA',
+      unit: telemetryDictonary.pressure.unit,
     };
   }
 
   public getHumidity(): TelemetryElement {
     return {
-      parameter: 'Luftfeuchtigkeit',
+      parameter: telemetryDictonary.humidity.name,
       value: this.humidity,
-      unit: '%',
+      unit: telemetryDictonary.humidity.unit,
     };
   }
 
   public getTempExtern(): TelemetryElement {
     return {
-      parameter: 'Temperatur Außen',
+      parameter: telemetryDictonary.temp_extern.name,
       value: this.temp_extern,
-      unit: '°C',
+      unit: telemetryDictonary.temp_extern.unit,
     };
   }
 
   public getTimestamp(): TelemetryElement {
     return {
-      parameter: 'Zeitstempel',
+      parameter: telemetryDictonary.timestamp.name,
       value: this.timestamp,
-      unit: '',
+      unit: telemetryDictonary.timestamp.unit,
     };
   }
 
@@ -212,17 +213,17 @@ export class TelemetryObject implements TelemetryInternal {
     const date = new Date(this.timestamp);
 
     return {
-      parameter: 'Zeit (Empfangen)',
-      value: date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
-      unit: '',
+      parameter: telemetryDictonary.timestamp.name,
+      value: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
+      unit: telemetryDictonary.timestamp.unit,
     };
   }
 
   public getType(): TelemetryElement {
     return {
-      parameter: 'Typ',
+      parameter: telemetryDictonary.type.name,
       value: this.type,
-      unit: '',
+      unit: telemetryDictonary.type.unit,
     };
   }
 }
