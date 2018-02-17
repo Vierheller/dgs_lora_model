@@ -137,6 +137,23 @@ export class TelemetryObject implements TelemetryInternal {
     };
   }
 
+  public getBearing(): TelemetryElement {
+    let bearings = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+
+    let index = this.direction;
+    if (index < 0) {
+      index += 360;
+    }
+
+    index = Math.round(index / 45);
+
+    return {
+      parameter: telemetryDictonary.bearing.name,
+      value: bearings[index],
+      unit: telemetryDictonary.bearing.unit
+    };
+  }
+
   public getSatellites(): TelemetryElement {
     return {
       parameter: telemetryDictonary.satellites.name,

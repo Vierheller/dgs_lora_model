@@ -43,6 +43,10 @@ export const telemetryDictonary = {
     name: "Richtung",
     unit: "°"
   },
+  bearing: {
+    name: "Himmelsrichtung",
+    unit: ""
+  },
   satellites: {
     name: "Satelliten",
     unit: "",
