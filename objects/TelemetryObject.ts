@@ -46,7 +46,7 @@ export class TelemetryObject implements TelemetryInternal {
     dbData ? this.humidity = dbData.humidity : this.humidity = 0;
     dbData ? this.temp_extern = dbData.temp_extern : this.temp_extern = 0;
     dbData ? this.timestamp = dbData.timestamp : this.timestamp = 0;
-    dbData ? this.type = dbData.type : this.type = "";
+    dbData ? this.type = dbData.type : this.type = "telemetry";
   }
 
   public getClass(): TelemetryElement {
