@@ -1,5 +1,5 @@
-import {TelemetryInternal} from "../Telemetry";
-import {telemetryDictonary} from "../config/telemetryDic";
+import {TelemetryInternal} from '../Telemetry';
+import {telemetryDictonary} from '../config/telemetryDic';
 
 export class TelemetryObject implements TelemetryInternal {
   public class: string;
@@ -26,12 +26,12 @@ export class TelemetryObject implements TelemetryInternal {
 
   // init the data
   constructor(dbData?: TelemetryInternal) {
-    dbData ? this.class = dbData.class : this.class = "";
+    dbData ? this.class = dbData.class : this.class = '';
     dbData ? this.index = dbData.index : this.index = 0;
     dbData ? this.channel = dbData.channel : this.channel = 0;
-    dbData ? this.payload = dbData.payload : this.payload = "";
+    dbData ? this.payload = dbData.payload : this.payload = '';
     dbData ? this.package_counter = dbData.package_counter : this.package_counter = 0;
-    dbData ? this.time = dbData.time : this.time = "";
+    dbData ? this.time = dbData.time : this.time = '';
     dbData ? this.lat = dbData.lat : this.lat = 0;
     dbData ? this.lon = dbData.lon : this.lon = 0;
     dbData ? this.alt = dbData.alt : this.alt = 0;
@@ -46,7 +46,7 @@ export class TelemetryObject implements TelemetryInternal {
     dbData ? this.humidity = dbData.humidity : this.humidity = 0;
     dbData ? this.temp_extern = dbData.temp_extern : this.temp_extern = 0;
     dbData ? this.timestamp = dbData.timestamp : this.timestamp = 0;
-    dbData ? this.type = dbData.type : this.type = "telemetry";
+    dbData ? this.type = dbData.type : this.type = 'telemetry';
   }
 
   public getClass(): TelemetryElement {
@@ -138,7 +138,7 @@ export class TelemetryObject implements TelemetryInternal {
   }
 
   public getBearing(): TelemetryElement {
-    let bearings = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+    const bearings = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 
     let index = this.direction;
     if (index < 0) {
@@ -231,7 +231,7 @@ export class TelemetryObject implements TelemetryInternal {
 
     return {
       parameter: telemetryDictonary.timestamp.name,
-      value: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
+      value: date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
       unit: telemetryDictonary.timestamp.unit,
     };
   }

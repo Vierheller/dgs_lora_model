@@ -1,4 +1,4 @@
-import {Image} from "../Image";
+import {Image} from '../Image';
 
 export class ImageObject implements Image {
   public timestamp: number;
