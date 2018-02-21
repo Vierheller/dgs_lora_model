@@ -39,6 +39,11 @@ export const telemetryDictonary = {
     unit: '°',
     icon: 'fa fa-arrows-v'
   },
+  dms: {
+    name: 'Koordinaten',
+    unit: '',
+    icon: 'fa fa-map-marker'
+  },
   alt: {
     name: 'Höhe',
     unit: 'm ü. NN',

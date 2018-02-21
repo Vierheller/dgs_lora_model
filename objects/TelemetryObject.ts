@@ -121,6 +121,16 @@ export class TelemetryObject implements TelemetryInternal {
     };
   }
 
+  // convert lat and lon to degree, minute, second format
+  public getDMS(): TelemetryElement {
+    return {
+      parameter: telemetryDictonary.dms.name,
+      value: this.degreesToDMS(this.lat)+' N'+' '+this.degreesToDMS(this.lon)+' E',
+      unit: telemetryDictonary.dms.unit,
+      icon: telemetryDictonary.dms.icon
+    }
+  }
+
   public getAlt(): TelemetryElement {
     return {
       parameter: telemetryDictonary.alt.name,
@@ -274,6 +284,25 @@ export class TelemetryObject implements TelemetryInternal {
       unit: telemetryDictonary.type.unit,
       icon: telemetryDictonary.type.icon
     };
+  }
+
+  private degreesToDMS(deg) {
+    let degrees = Math.floor (deg);
+    let minfloat = (deg-degrees)*60;
+    let minutes = Math.floor(minfloat);
+    let secfloat = (minfloat-minutes)*60;
+    let seconds = Math.round(secfloat);
+
+    if (seconds == 60) {
+      minutes++;
+      seconds = 0;
+    }
+
+    if (minutes == 60) {
+      degrees++;
+      minutes = 0;
+    }
+    return (""+degrees+"° "+minutes+"' "+seconds+"''");
   }
 }
 
