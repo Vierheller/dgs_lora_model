@@ -54,6 +54,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.class.name,
       value: this.class,
       unit: telemetryDictonary.class.unit,
+      icon: telemetryDictonary.class.icon
     };
   }
 
@@ -62,6 +63,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.index.name,
       value: this.index,
       unit: telemetryDictonary.index.unit,
+      icon: telemetryDictonary.index.icon
     };
   }
 
@@ -70,6 +72,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.channel.name,
       value: this.channel,
       unit: telemetryDictonary.channel.unit,
+      icon: telemetryDictonary.channel.icon
     };
   }
 
@@ -78,6 +81,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.payload.name,
       value: this.payload,
       unit: telemetryDictonary.payload.unit,
+      icon: telemetryDictonary.payload.icon
     };
   }
 
@@ -86,6 +90,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.package_counter.name,
       value: this.package_counter,
       unit: telemetryDictonary.package_counter.unit,
+      icon: telemetryDictonary.package_counter.icon
     };
   }
 
@@ -94,6 +99,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.time.name,
       value: this.time,
       unit: telemetryDictonary.time.unit,
+      icon: telemetryDictonary.time.icon
     };
   }
 
@@ -102,6 +108,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.lat.name,
       value: this.lat,
       unit: telemetryDictonary.lat.unit,
+      icon: telemetryDictonary.lat.icon
     };
   }
 
@@ -109,7 +116,8 @@ export class TelemetryObject implements TelemetryInternal {
     return {
       parameter: telemetryDictonary.lon.name,
       value: this.lon,
-      unit: telemetryDictonary.lon.name,
+      unit: telemetryDictonary.lon.unit,
+      icon: telemetryDictonary.lon.icon
     };
   }
 
@@ -118,6 +126,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.alt.name,
       value: this.alt,
       unit: telemetryDictonary.alt.unit,
+      icon: telemetryDictonary.alt.icon
     };
   }
 
@@ -126,6 +135,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.speed.name,
       value: this.speed,
       unit: telemetryDictonary.speed.unit,
+      icon: telemetryDictonary.speed.icon
     };
   }
 
@@ -134,6 +144,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.direction.name,
       value: this.direction,
       unit: telemetryDictonary.direction.unit,
+      icon: telemetryDictonary.direction.icon
     };
   }
 
@@ -150,7 +161,8 @@ export class TelemetryObject implements TelemetryInternal {
     return {
       parameter: telemetryDictonary.bearing.name,
       value: bearings[index],
-      unit: telemetryDictonary.bearing.unit
+      unit: telemetryDictonary.bearing.unit,
+      icon: telemetryDictonary.bearing.icon
     };
   }
 
@@ -158,7 +170,8 @@ export class TelemetryObject implements TelemetryInternal {
     return {
       parameter: telemetryDictonary.direction_combined.name,
       value: this.getBearing().value+' ('+this.getDirection().value+this.getDirection().unit+')',
-      unit: telemetryDictonary.direction_combined.unit
+      unit: telemetryDictonary.direction_combined.unit,
+      icon: telemetryDictonary.direction_combined.icon
     }
   }
 
@@ -167,6 +180,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.satellites.name,
       value: this.satellites,
       unit: telemetryDictonary.satellites.unit,
+      icon: telemetryDictonary.satellites.icon
     };
   }
 
@@ -175,6 +189,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.temp_chip.name,
       value: this.temp_chip,
       unit: telemetryDictonary.temp_chip.unit,
+      icon: telemetryDictonary.temp_chip.icon
     };
   }
 
@@ -183,6 +198,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.battery_voltage.name,
       value: this.battery_voltage,
       unit: telemetryDictonary.battery_voltage.unit,
+      icon: telemetryDictonary.battery_voltage.icon
     };
   }
 
@@ -191,6 +207,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.current_voltage.name,
       value: this.current_voltage,
       unit: telemetryDictonary.current_voltage.unit,
+      icon: telemetryDictonary.current_voltage.icon
     };
   }
 
@@ -199,6 +216,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.temp_case.name,
       value: this.temp_case,
       unit: telemetryDictonary.temp_case.unit,
+      icon: telemetryDictonary.temp_case.icon
     };
   }
 
@@ -207,6 +225,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.pressure.name,
       value: this.pressure,
       unit: telemetryDictonary.pressure.unit,
+      icon: telemetryDictonary.pressure.icon
     };
   }
 
@@ -215,6 +234,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.humidity.name,
       value: this.humidity,
       unit: telemetryDictonary.humidity.unit,
+      icon: telemetryDictonary.humidity.icon
     };
   }
 
@@ -223,6 +243,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.temp_extern.name,
       value: this.temp_extern,
       unit: telemetryDictonary.temp_extern.unit,
+      icon: telemetryDictonary.temp_extern.icon
     };
   }
 
@@ -231,6 +252,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.timestamp.name,
       value: this.timestamp,
       unit: telemetryDictonary.timestamp.unit,
+      icon: telemetryDictonary.timestamp.icon
     };
   }
 
@@ -241,6 +263,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.timestamp.name,
       value: date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
       unit: telemetryDictonary.timestamp.unit,
+      icon: telemetryDictonary.timestamp.icon
     };
   }
 
@@ -249,6 +272,7 @@ export class TelemetryObject implements TelemetryInternal {
       parameter: telemetryDictonary.type.name,
       value: this.type,
       unit: telemetryDictonary.type.unit,
+      icon: telemetryDictonary.type.icon
     };
   }
 }
@@ -257,4 +281,5 @@ export interface TelemetryElement {
   parameter: string;
   value: any;
   unit: string;
+  icon: string;
 }

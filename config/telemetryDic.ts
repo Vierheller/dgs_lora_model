@@ -1,94 +1,117 @@
 export const telemetryDictonary = {
   class: {
     name: 'Klasse',
-    unit: ''
+    unit: '',
+    icon: 'fa fa-object-group'
   },
   index: {
     name: 'Index',
-    unit: ''
+    unit: '',
+    icon: 'fa fa-indent'
   },
   channel: {
     name: 'Kanal',
-    unit: ''
+    unit: '',
+    icon: 'fa fa-podcast'
   },
   payload: {
     name: 'Payload',
-    unit: ''
+    unit: '',
+    icon: 'fa fa-info'
   },
   package_counter: {
     name: 'Paket Nr.',
-    unit: ''
+    unit: '',
+    icon: 'fa fa-list-ol'
   },
   time: {
     name: 'Zeit (gesendet)',
-    unit: ''
+    unit: '',
+    icon: 'fa fa-clock-o'
   },
   lat: {
     name: 'Breitengrad',
-    unit: '°'
+    unit: '°',
+    icon: 'fa fa-arrows-h'
   },
   lon: {
     name: 'Längengrad',
     unit: '°',
+    icon: 'fa fa-arrows-v'
   },
   alt: {
     name: 'Höhe',
-    unit: 'm ü. NN'
+    unit: 'm ü. NN',
+    icon: 'fa fa-area-chart'
   },
   speed: {
     name: 'Geschwindigkeit',
-    unit: 'km/h'
+    unit: 'km/h',
+    icon: 'fa fa-rocket'
   },
   direction: {
     name: 'Flugrichtung',
-    unit: '°'
+    unit: '°',
+    icon: 'fa fa-compass'
   },
   bearing: {
     name: 'Flugrichtung',
-    unit: ''
+    unit: '',
+    icon: 'fa fa-compass'
   },
   direction_combined: {
     name: 'Flugrichtung',
-    unit: ''
+    unit: '',
+    icon: 'fa fa-compass'
   },
   satellites: {
     name: 'Satelliten',
     unit: '',
+    icon: 'fa fa-globe'
   },
   temp_chip: {
     name: 'Temperatur (Hardware)',
-    unit: '°C'
+    unit: '°C',
+    icon: 'fa fa-thermometer-full'
   },
   battery_voltage: {
     name: 'Akku Spannung',
-    unit: 'V'
+    unit: 'V',
+    icon: 'fa fa-battery'
   },
   current_voltage: {
     name: 'Anliegende Spannung',
-    unit: 'V'
+    unit: 'V',
+    icon: 'fa fa-battery-half'
   },
   temp_case: {
     name: 'Temperatur (Sonde)',
-    unit: '°C'
+    unit: '°C',
+    icon: 'fa fa-thermometer-half'
   },
   pressure: {
     name: 'Luftdruck',
-    unit: 'hPa'
+    unit: 'hPa',
+    icon: 'fa fa-tachometer'
   },
   humidity: {
     name: 'Luftfeuchtigkeit',
-    unit: '%'
+    unit: '%',
+    icon: 'fa fa-tint'
   },
   temp_extern: {
     name: 'Temperatur (Außen)',
-    unit: '°C'
+    unit: '°C',
+    icon: 'fa fa-thermometer-empty'
   },
   timestamp: {
     name: 'Zeit (Empfangen)',
-    unit: ''
+    unit: '',
+    icon: 'fa fa-calendar'
   },
   type: {
     name: 'Typ',
-    unit: ''
+    unit: '',
+    icon: 'fa fa-file-code-o'
   }
 };
