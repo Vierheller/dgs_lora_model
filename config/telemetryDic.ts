@@ -40,11 +40,15 @@ export const telemetryDictonary = {
     unit: 'km/h'
   },
   direction: {
-    name: 'Richtung',
+    name: 'Flugrichtung',
     unit: '°'
   },
   bearing: {
-    name: 'Himmelsrichtung',
+    name: 'Flugrichtung',
+    unit: ''
+  },
+  direction_combined: {
+    name: 'Flugrichtung',
     unit: ''
   },
   satellites: {

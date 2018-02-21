@@ -154,6 +154,14 @@ export class TelemetryObject implements TelemetryInternal {
     };
   }
 
+  public getDirectionCombined(): TelemetryElement {
+    return {
+      parameter: telemetryDictonary.direction_combined.name,
+      value: this.getBearing().value+' ('+this.getDirection().value+this.getDirection().unit+')',
+      unit: telemetryDictonary.direction_combined.unit
+    }
+  }
+
   public getSatellites(): TelemetryElement {
     return {
       parameter: telemetryDictonary.satellites.name,
