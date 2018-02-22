@@ -125,7 +125,7 @@ export class TelemetryObject implements TelemetryInternal {
   public getDMS(): TelemetryElement {
     return {
       parameter: telemetryDictonary.dms.name,
-      value: this.degreesToDMS(this.lat)+' N'+' '+this.degreesToDMS(this.lon)+' E',
+      value: this.calcDegreesToDMS(this.lat)+' N'+' '+this.calcDegreesToDMS(this.lon)+' E',
       unit: telemetryDictonary.dms.unit,
       icon: telemetryDictonary.dms.icon
     }
@@ -286,7 +286,26 @@ export class TelemetryObject implements TelemetryInternal {
     };
   }
 
-  private degreesToDMS(deg) {
+  public getDistance(start_lat, start_lon): TelemetryElement {
+    return {
+      parameter: telemetryDictonary.distance.name,
+      value: this.calcDistance(start_lat, start_lon, this.lat, this.lon),
+      unit: telemetryDictonary.distance.unit,
+      icon: telemetryDictonary.distance.icon
+    };
+  }
+
+  private calcDistance(lat1, lon1, lat2, lon2) {
+    let p = 0.017453292519943295;    // Math.PI / 180
+    let c = Math.cos;
+    let a = 0.5 - c((lat2 - lat1) * p)/2 +
+      c(lat1 * p) * c(lat2 * p) *
+      (1 - c((lon2 - lon1) * p))/2;
+
+    return Math.round(12742 * Math.asin(Math.sqrt(a))); // 2 * R; R = 6371 km
+  }
+
+  private calcDegreesToDMS(deg) {
     let degrees = Math.floor (deg);
     let minfloat = (deg-degrees)*60;
     let minutes = Math.floor(minfloat);

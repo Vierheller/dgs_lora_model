@@ -44,6 +44,11 @@ export const telemetryDictonary = {
     unit: '',
     icon: 'fa fa-map-marker'
   },
+  distance: {
+    name: 'Entfernung',
+    unit: 'km ü. GND',
+    icon: 'fa fa-road'
+  },
   alt: {
     name: 'Höhe',
     unit: 'm ü. NN',
@@ -51,7 +56,7 @@ export const telemetryDictonary = {
   },
   speed: {
     name: 'Geschwindigkeit',
-    unit: 'km/h',
+    unit: 'km/h ü. GND',
     icon: 'fa fa-rocket'
   },
   direction: {
