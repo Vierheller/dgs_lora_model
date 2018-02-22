@@ -150,27 +150,24 @@ export class TelemetryObject implements TelemetryInternal {
   }
 
   public getDirection(): TelemetryElement {
+    let dir = this.direction;
+
+    if(dir < 0) {
+      dir *= -1;
+    }
+
     return {
       parameter: telemetryDictonary.direction.name,
-      value: this.direction,
+      value: dir,
       unit: telemetryDictonary.direction.unit,
       icon: telemetryDictonary.direction.icon
     };
   }
 
   public getBearing(): TelemetryElement {
-    const bearings = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-
-    let index = this.direction;
-    if (index < 0) {
-      index += 360;
-    }
-
-    index = Math.round(index / 45);
-
     return {
       parameter: telemetryDictonary.bearing.name,
-      value: bearings[index],
+      value: this.calcBearing(this.direction),
       unit: telemetryDictonary.bearing.unit,
       icon: telemetryDictonary.bearing.icon
     };
@@ -295,7 +292,22 @@ export class TelemetryObject implements TelemetryInternal {
     };
   }
 
-  private calcDistance(lat1, lon1, lat2, lon2) {
+  public getWindDirection(): TelemetryElement {
+    let windDir = this.direction - 180;
+
+    if(windDir < 0) {
+      windDir *= -1;
+    }
+
+    return {
+      parameter: telemetryDictonary.wind.name,
+      value: this.calcBearing(windDir) + ' ('+windDir+telemetryDictonary.direction.unit+')',
+      unit: telemetryDictonary.wind.unit,
+      icon: telemetryDictonary.wind.icon
+    };
+  }
+
+  private calcDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
     let p = 0.017453292519943295;    // Math.PI / 180
     let c = Math.cos;
     let a = 0.5 - c((lat2 - lat1) * p)/2 +
@@ -305,8 +317,8 @@ export class TelemetryObject implements TelemetryInternal {
     return Math.round(12742 * Math.asin(Math.sqrt(a))); // 2 * R; R = 6371 km
   }
 
-  private calcDegreesToDMS(deg) {
-    let degrees = Math.floor (deg);
+  private calcDegreesToDMS(deg: number): string {
+    let degrees = Math.floor(deg);
     let minfloat = (deg-degrees)*60;
     let minutes = Math.floor(minfloat);
     let secfloat = (minfloat-minutes)*60;
@@ -321,7 +333,20 @@ export class TelemetryObject implements TelemetryInternal {
       degrees++;
       minutes = 0;
     }
+
     return (""+degrees+"° "+minutes+"' "+seconds+"''");
+  }
+
+  private calcBearing(direction: number): string {
+    const bearings = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    let index = direction;
+
+    if (index < 0) {
+      index += 360;
+    }
+
+    index = Math.round(index / 45);
+    return bearings[index];
   }
 }
 

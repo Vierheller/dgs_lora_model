@@ -123,5 +123,10 @@ export const telemetryDictonary = {
     name: 'Typ',
     unit: '',
     icon: 'fa fa-file-code-o'
+  },
+  wind: {
+    name: 'Windrichtung',
+    unit: '',
+    icon: 'fa fa-cloud'
   }
 };
