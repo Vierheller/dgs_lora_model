@@ -240,6 +240,14 @@ var TelemetryObject = /** @class */ (function () {
             icon: telemetryDic_1.telemetryDictonary.distance.icon
         };
     };
+    TelemetryObject.prototype.getRiseRate = function (alt_old, time_old) {
+        return {
+            parameter: telemetryDic_1.telemetryDictonary.rise.name,
+            value: this.calcRiseRate(alt_old, time_old),
+            unit: telemetryDic_1.telemetryDictonary.rise.unit,
+            icon: telemetryDic_1.telemetryDictonary.rise.icon
+        };
+    };
     TelemetryObject.prototype.getWindDirection = function () {
         var windDir = this.direction - 180;
         if (windDir < 0) {
@@ -284,6 +292,23 @@ var TelemetryObject = /** @class */ (function () {
         }
         index = Math.round(index / 45);
         return bearings[index];
+    };
+    TelemetryObject.prototype.calcRiseRate = function (alt_old, time_old) {
+        var altDiff = alt_old - this.alt;
+        var timeDiff = this.calcDateFromTimeString(time_old).getTime() - this.calcDateFromTimeString(this.time).getTime();
+        timeDiff = timeDiff / 1000; // convert to seconds
+        if (!timeDiff) {
+            return 0;
+        }
+        return +(altDiff / timeDiff).toFixed(2);
+    };
+    TelemetryObject.prototype.calcDateFromTimeString = function (time_string) {
+        var date = new Date();
+        var splitDate = time_string.split(':', 3);
+        date.setHours(+splitDate[0]);
+        date.setMinutes(+splitDate[1]);
+        date.setSeconds(+splitDate[2]);
+        return date;
     };
     return TelemetryObject;
 }());
