@@ -30,33 +30,41 @@ export class TelemetryObject implements TelemetryInternal {
   public type: string;
 
   // init the data
-  constructor(dbData?: TelemetryInternal) {
-    dbData ? this.class = dbData.class : this.class = '';
-    dbData ? this.index = dbData.index : this.index = 0;
-    dbData ? this.channel = dbData.channel : this.channel = 0;
-    dbData ? this.payload = dbData.payload : this.payload = '';
-    dbData ? this.package_counter = dbData.package_counter : this.package_counter = 0;
-    dbData ? this.time = dbData.time : this.time = '';
-    dbData ? this.lat = dbData.lat : this.lat = 0;
-    dbData ? this.lon = dbData.lon : this.lon = 0;
-    dbData ? this.alt = dbData.alt : this.alt = 0;
-    dbData ? this.speed = dbData.speed : this.speed = 0;
-    dbData ? this.direction = dbData.direction : this.direction = 0;
-    dbData ? this.satellites = dbData.satellites : this.satellites = 0;
-    dbData ? this.temp_chip = dbData.temp_chip : this.temp_chip = 0;
-    dbData ? this.battery_voltage = dbData.battery_voltage : this.battery_voltage = 0;
-    dbData ? this.current_voltage = dbData.current_voltage : this.current_voltage = 0;
-    dbData ? this.temp_case = dbData.temp_case : this.temp_case = 0;
-    dbData ? this.pressure = dbData.pressure : this.pressure = 0;
-    dbData ? this.humidity = dbData.humidity : this.humidity = 0;
-    dbData ? this.temp_extern = dbData.temp_extern : this.temp_extern = 0;
-    dbData ? this.timestamp = dbData.timestamp : this.timestamp = 0;
-    dbData ? this.cda = dbData.cda : this.cda = 0.0;
-    dbData ? this.pred_lat = dbData.pred_lat : this.pred_lat = 0.0;
-    dbData ? this.pred_lng = dbData.pred_lng : this.pred_lng = 0.0;
-    dbData ? this.pred_landing_speed = dbData.pred_landing_speed : this.pred_landing_speed = 0;
-    dbData ? this.pred_time_to_landing = dbData.pred_time_to_landing : this.pred_time_to_landing = -1;
-    dbData ? this.type = dbData.type : this.type = 'telemetry';
+  private constructor(dbData?: TelemetryInternal) {
+    dbData.index ? this.index = dbData.index : this.index = 0;
+    dbData.class ? this.class = dbData.class : this.class = '';
+    dbData.channel ? this.channel = dbData.channel : this.channel = 0;
+    dbData.payload ? this.payload = dbData.payload : this.payload = '';
+    dbData.package_counter ? this.package_counter = dbData.package_counter : this.package_counter = 0;
+    dbData.time ? this.time = dbData.time : this.time = '';
+    dbData.lat ? this.lat = dbData.lat : this.lat = 0;
+    dbData.lon ? this.lon = dbData.lon : this.lon = 0;
+    dbData.alt ? this.alt = dbData.alt : this.alt = 0;
+    dbData.speed ? this.speed = dbData.speed : this.speed = 0;
+    dbData.direction ? this.direction = dbData.direction : this.direction = 0;
+    dbData.satellites ? this.satellites = dbData.satellites : this.satellites = 0;
+    dbData.temp_chip ? this.temp_chip = dbData.temp_chip : this.temp_chip = 0;
+    dbData.battery_voltage ? this.battery_voltage = dbData.battery_voltage : this.battery_voltage = 0;
+    dbData.current_voltage ? this.current_voltage = dbData.current_voltage : this.current_voltage = 0;
+    dbData.temp_case ? this.temp_case = dbData.temp_case : this.temp_case = 0;
+    dbData.pressure ? this.pressure = dbData.pressure : this.pressure = 0;
+    dbData.humidity ? this.humidity = dbData.humidity : this.humidity = 0;
+    dbData.temp_extern ? this.temp_extern = dbData.temp_extern : this.temp_extern = 0;
+    dbData.timestamp ? this.timestamp = dbData.timestamp : this.timestamp = 0;
+    dbData.cda ? this.cda = dbData.cda : this.cda = 0.0;
+    dbData.pred_lat ? this.pred_lat = dbData.pred_lat : this.pred_lat = 0.0;
+    dbData.pred_lng ? this.pred_lng = dbData.pred_lng : this.pred_lng = 0.0;
+    dbData.speed ? this.pred_landing_speed = dbData.pred_landing_speed : this.pred_landing_speed = 0;
+    dbData.pred_time_to_landing ? this.pred_time_to_landing = dbData.pred_time_to_landing : this.pred_time_to_landing = -1;
+    dbData.type ? this.type = dbData.type : this.type = 'telemetry';
+  }
+
+  public static createTelemetryObject(dbData: TelemetryInternal) {
+    if (!dbData) {
+      throw new Error('Data must not be null');
+    }
+
+    return new TelemetryObject(dbData);
   }
 
   private createTelemetryElement(property: any, value: any): TelemetryElement {
