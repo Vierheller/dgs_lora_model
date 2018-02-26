@@ -22,6 +22,11 @@ export class TelemetryObject implements TelemetryInternal {
   public humidity: number;
   public temp_extern: number;
   public timestamp: number;
+  public cda: number;
+  public pred_lat: number;
+  public pred_lng: number;
+  public pred_landing_speed: number;
+  public pred_time_to_landing: number;
   public type: string;
 
   // init the data
@@ -46,304 +51,202 @@ export class TelemetryObject implements TelemetryInternal {
     dbData ? this.humidity = dbData.humidity : this.humidity = 0;
     dbData ? this.temp_extern = dbData.temp_extern : this.temp_extern = 0;
     dbData ? this.timestamp = dbData.timestamp : this.timestamp = 0;
+    dbData ? this.cda = dbData.cda : this.cda = 0.0;
+    dbData ? this.pred_lat = dbData.pred_lat : this.pred_lat = 0.0;
+    dbData ? this.pred_lng = dbData.pred_lng : this.pred_lng = 0.0;
+    dbData ? this.pred_landing_speed = dbData.pred_landing_speed : this.pred_landing_speed = 0;
+    dbData ? this.pred_time_to_landing = dbData.pred_time_to_landing : this.pred_time_to_landing = -1;
     dbData ? this.type = dbData.type : this.type = 'telemetry';
   }
 
-  public getClass(): TelemetryElement {
+  private createTelemetryElement(property: any, value: any): TelemetryElement {
     return {
-      parameter: telemetryDictonary.class.name,
-      value: this.class,
-      unit: telemetryDictonary.class.unit,
-      icon: telemetryDictonary.class.icon
+      parameter: property.name,
+      value: value,
+      unit: property.unit,
+      icon: property.icon
     };
+  }
+
+  public getClass(): TelemetryElement {
+    return this.createTelemetryElement(telemetryDictonary.class, this.class);
   }
 
   public getIndex(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.index.name,
-      value: this.index,
-      unit: telemetryDictonary.index.unit,
-      icon: telemetryDictonary.index.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.index, this.index);
   }
 
   public getChannel(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.channel.name,
-      value: this.channel,
-      unit: telemetryDictonary.channel.unit,
-      icon: telemetryDictonary.channel.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.channel, this.channel);
   }
 
   public getPayload(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.payload.name,
-      value: this.payload,
-      unit: telemetryDictonary.payload.unit,
-      icon: telemetryDictonary.payload.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.payload, this.payload);
   }
 
   public getPackageCounter(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.package_counter.name,
-      value: this.package_counter,
-      unit: telemetryDictonary.package_counter.unit,
-      icon: telemetryDictonary.package_counter.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.package_counter, this.package_counter);
   }
 
   public getTime(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.time.name,
-      value: this.time,
-      unit: telemetryDictonary.time.unit,
-      icon: telemetryDictonary.time.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.time, this.time);
   }
 
   public getLat(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.lat.name,
-      value: this.lat,
-      unit: telemetryDictonary.lat.unit,
-      icon: telemetryDictonary.lat.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.lat, this.lat);
   }
 
   public getLon(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.lon.name,
-      value: this.lon,
-      unit: telemetryDictonary.lon.unit,
-      icon: telemetryDictonary.lon.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.lon, this.lon);
   }
 
   // convert lat and lon to degree, minute, second format
   public getDMS(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.dms.name,
-      value: this.calcDegreesToDMS(this.lat)+' N'+' '+this.calcDegreesToDMS(this.lon)+' E',
-      unit: telemetryDictonary.dms.unit,
-      icon: telemetryDictonary.dms.icon
-    }
+    return this.createTelemetryElement(telemetryDictonary.dms,
+      this.calcDegreesToDMS(this.lat) + ' N' + ' ' + this.calcDegreesToDMS(this.lon) + ' E');
   }
 
   public getAlt(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.alt.name,
-      value: this.alt,
-      unit: telemetryDictonary.alt.unit,
-      icon: telemetryDictonary.alt.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.alt, this.alt);
   }
 
   public getSpeed(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.speed.name,
-      value: this.speed,
-      unit: telemetryDictonary.speed.unit,
-      icon: telemetryDictonary.speed.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.speed, this.speed);
   }
 
   public getDirection(): TelemetryElement {
     let dir = this.direction;
 
-    if(dir < 0) {
+    if (dir < 0) {
       dir *= -1;
     }
-
-    return {
-      parameter: telemetryDictonary.direction.name,
-      value: dir,
-      unit: telemetryDictonary.direction.unit,
-      icon: telemetryDictonary.direction.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.direction, dir);
   }
 
   public getBearing(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.bearing.name,
-      value: this.calcBearing(this.direction),
-      unit: telemetryDictonary.bearing.unit,
-      icon: telemetryDictonary.bearing.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.bearing, this.calcBearing(this.direction));
   }
 
   public getDirectionCombined(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.direction_combined.name,
-      value: this.getBearing().value+' ('+this.getDirection().value+this.getDirection().unit+')',
-      unit: telemetryDictonary.direction_combined.unit,
-      icon: telemetryDictonary.direction_combined.icon
-    }
+    return this.createTelemetryElement(telemetryDictonary.direction_combined,
+      this.getBearing().value + ' (' + this.getDirection().value + this.getDirection().unit + ')');
   }
 
   public getSatellites(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.satellites.name,
-      value: this.satellites,
-      unit: telemetryDictonary.satellites.unit,
-      icon: telemetryDictonary.satellites.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.satellites, this.satellites);
   }
 
   public getTempChip(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.temp_chip.name,
-      value: this.temp_chip,
-      unit: telemetryDictonary.temp_chip.unit,
-      icon: telemetryDictonary.temp_chip.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.temp_chip, this.temp_chip);
   }
 
   public getBatteryVoltage(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.battery_voltage.name,
-      value: this.battery_voltage,
-      unit: telemetryDictonary.battery_voltage.unit,
-      icon: telemetryDictonary.battery_voltage.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.battery_voltage, this.battery_voltage);
   }
 
   public getCurrentVoltage(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.current_voltage.name,
-      value: this.current_voltage,
-      unit: telemetryDictonary.current_voltage.unit,
-      icon: telemetryDictonary.current_voltage.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.current_voltage, this.current_voltage);
   }
 
   public getTempCase(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.temp_case.name,
-      value: this.temp_case,
-      unit: telemetryDictonary.temp_case.unit,
-      icon: telemetryDictonary.temp_case.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.temp_case, this.temp_case);
   }
 
   public getPressure(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.pressure.name,
-      value: this.pressure,
-      unit: telemetryDictonary.pressure.unit,
-      icon: telemetryDictonary.pressure.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.pressure, this.pressure);
   }
 
   public getHumidity(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.humidity.name,
-      value: this.humidity,
-      unit: telemetryDictonary.humidity.unit,
-      icon: telemetryDictonary.humidity.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.humidity, this.humidity);
   }
 
   public getTempExtern(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.temp_extern.name,
-      value: this.temp_extern,
-      unit: telemetryDictonary.temp_extern.unit,
-      icon: telemetryDictonary.temp_extern.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.temp_extern, this.temp_extern);
   }
 
   public getTimestamp(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.timestamp.name,
-      value: this.timestamp,
-      unit: telemetryDictonary.timestamp.unit,
-      icon: telemetryDictonary.timestamp.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.timestamp, this.timestamp);
   }
 
   public getTimestampConverted(): TelemetryElement {
     const date = new Date(this.timestamp);
 
-    return {
-      parameter: telemetryDictonary.timestamp.name,
-      value: date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
-      unit: telemetryDictonary.timestamp.unit,
-      icon: telemetryDictonary.timestamp.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.timestamp, date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
   }
 
   public getType(): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.type.name,
-      value: this.type,
-      unit: telemetryDictonary.type.unit,
-      icon: telemetryDictonary.type.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.type, this.type);
   }
 
   public getDistance(start_lat: number, start_lon: number): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.distance.name,
-      value: this.calcDistance(start_lat, start_lon, this.lat, this.lon),
-      unit: telemetryDictonary.distance.unit,
-      icon: telemetryDictonary.distance.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.distance, this.calcDistance(start_lat, start_lon, this.lat, this.lon));
   }
 
   public getRiseRate(alt_old: number, time_old: string): TelemetryElement {
-    return {
-      parameter: telemetryDictonary.rise.name,
-      value: this.calcRiseRate(alt_old, time_old),
-      unit: telemetryDictonary.rise.unit,
-      icon: telemetryDictonary.rise.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.rise, this.calcRiseRate(alt_old, time_old));
   }
+
+  public getCDA(): TelemetryElement {
+    return this.createTelemetryElement(telemetryDictonary.cda, this.cda);
+  }
+
+  public getPredictedLatitude(): TelemetryElement {
+    return this.createTelemetryElement(telemetryDictonary.pred_lat, this.pred_lat);
+  }
+
+  public getPredictedLongitude(): TelemetryElement {
+    return this.createTelemetryElement(telemetryDictonary.pred_lng, this.pred_lng);
+  }
+
+  public getPredictedLandingSpeed(): TelemetryElement {
+    return this.createTelemetryElement(telemetryDictonary.pred_landing_speed, this.pred_landing_speed);
+  }
+
+  public getPredictedTimeToLanding(): TelemetryElement {
+    return this.createTelemetryElement(telemetryDictonary.pred_time_to_landing, this.pred_time_to_landing);
+  }
+
+
 
   public getWindDirection(): TelemetryElement {
     let windDir = this.direction - 180;
 
-    if(windDir < 0) {
+    if (windDir < 0) {
       windDir *= -1;
     }
 
-    return {
-      parameter: telemetryDictonary.wind.name,
-      value: this.calcBearing(windDir) + ' ('+windDir+telemetryDictonary.direction.unit+')',
-      unit: telemetryDictonary.wind.unit,
-      icon: telemetryDictonary.wind.icon
-    };
+    return this.createTelemetryElement(telemetryDictonary.wind,  this.calcBearing(windDir)
+      + ' (' + windDir + telemetryDictonary.direction.unit + ')');
   }
 
   private calcDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-    let p = 0.017453292519943295;    // Math.PI / 180
-    let c = Math.cos;
-    let a = 0.5 - c((lat2 - lat1) * p)/2 +
+    const p = 0.017453292519943295;    // Math.PI / 180
+    const c = Math.cos;
+    const a = 0.5 - c((lat2 - lat1) * p) / 2 +
       c(lat1 * p) * c(lat2 * p) *
-      (1 - c((lon2 - lon1) * p))/2;
+      (1 - c((lon2 - lon1) * p)) / 2;
 
     return Math.round(12742 * Math.asin(Math.sqrt(a))); // 2 * R; R = 6371 km
   }
 
   private calcDegreesToDMS(deg: number): string {
     let degrees = Math.floor(deg);
-    let minfloat = (deg-degrees)*60;
+    const minfloat = (deg - degrees) * 60;
     let minutes = Math.floor(minfloat);
-    let secfloat = (minfloat-minutes)*60;
+    const secfloat = (minfloat - minutes) * 60;
     let seconds = Math.round(secfloat);
 
-    if (seconds == 60) {
+    if (seconds === 60) {
       minutes++;
       seconds = 0;
     }
 
-    if (minutes == 60) {
+    if (minutes === 60) {
       degrees++;
       minutes = 0;
     }
 
-    return (""+degrees+"° "+minutes+"' "+seconds+"''");
+    return ('' + degrees + '° ' + minutes + '\' ' + seconds + '\'\'');
   }
 
   private calcBearing(direction: number): string {
@@ -359,11 +262,11 @@ export class TelemetryObject implements TelemetryInternal {
   }
 
   private calcRiseRate(alt_old: number, time_old: string): number {
-    let altDiff: number = alt_old - this.alt;
+    const altDiff: number = alt_old - this.alt;
     let timeDiff: number = this.calcDateFromTimeString(time_old).getTime() - this.calcDateFromTimeString(this.time).getTime();
     timeDiff = timeDiff / 1000;   // convert to seconds
 
-    if(!timeDiff) {
+    if (!timeDiff) {
       return 0;
     }
 
@@ -371,8 +274,8 @@ export class TelemetryObject implements TelemetryInternal {
   }
 
   private calcDateFromTimeString(time_string: string): Date {
-    let date = new Date();
-    let splitDate = time_string.split(':', 3);
+    const date = new Date();
+    const splitDate = time_string.split(':', 3);
 
     date.setHours(+splitDate[0]);
     date.setMinutes(+splitDate[1]);
