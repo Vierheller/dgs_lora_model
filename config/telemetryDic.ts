@@ -119,6 +119,31 @@ export const telemetryDictonary = {
     unit: '°C',
     icon: 'fa fa-thermometer-empty'
   },
+  cda: {
+    name: 'Koeffizient Luftwiderstand',
+    unit: '',
+    icon: ''
+  },
+  pred_lat: {
+    name: 'Vorhersage Längengrad',
+    unit: '°',
+    icon: ''
+  },
+  pred_lng: {
+    name: 'Vorhersage Breitengrad',
+    unit: '°',
+    icon: ''
+  },
+  pred_landing_speed: {
+    name: 'Landegeschwindigkeit',
+    unit: 'm/s',
+    icon: ''
+  },
+  pred_time_to_landing: {
+    name: 'Zeit bis Landung',
+    unit: 'min',
+    icon: ''
+  },
   timestamp: {
     name: 'Zeit (Empfangen)',
     unit: '',

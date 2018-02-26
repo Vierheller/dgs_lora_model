@@ -58,12 +58,12 @@ export interface TelemetryInternal {
   humidity: number;
   temp_extern: number;
 
-  //Prediction
+  // Prediction
   cda: number;
   pred_lat: number;
   pred_lng: number;
   pred_landing_speed: number;
-  pred_time_to_landing:number;
+  pred_time_to_landing: number;
 
   // additional info
   timestamp: number;
@@ -88,12 +88,12 @@ export interface TelemetrySentence {
     humidity: number;
     temp_extern: number;
 
-    //Prediction
+    // Prediction
     cda: number;
     pred_lat: number;
     pred_lng: number;
     pred_landing_speed: number;
-    pred_time_to_landing:number;
+    pred_time_to_landing: number;
 
     checksum: string;
 }
