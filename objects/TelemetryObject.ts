@@ -283,12 +283,21 @@ export class TelemetryObject implements TelemetryInternal {
     };
   }
 
-  public getDistance(start_lat, start_lon): TelemetryElement {
+  public getDistance(start_lat: number, start_lon: number): TelemetryElement {
     return {
       parameter: telemetryDictonary.distance.name,
       value: this.calcDistance(start_lat, start_lon, this.lat, this.lon),
       unit: telemetryDictonary.distance.unit,
       icon: telemetryDictonary.distance.icon
+    };
+  }
+
+  public getRiseRate(alt_old: number, time_old: string): TelemetryElement {
+    return {
+      parameter: telemetryDictonary.rise.name,
+      value: this.calcRiseRate(alt_old, time_old),
+      unit: telemetryDictonary.rise.unit,
+      icon: telemetryDictonary.rise.icon
     };
   }
 
@@ -347,6 +356,29 @@ export class TelemetryObject implements TelemetryInternal {
 
     index = Math.round(index / 45);
     return bearings[index];
+  }
+
+  private calcRiseRate(alt_old: number, time_old: string): number {
+    let altDiff: number = alt_old - this.alt;
+    let timeDiff: number = this.calcDateFromTimeString(time_old).getTime() - this.calcDateFromTimeString(this.time).getTime();
+    timeDiff = timeDiff / 1000;   // convert to seconds
+
+    if(!timeDiff) {
+      return 0;
+    }
+
+    return +(altDiff / timeDiff).toFixed(2);
+  }
+
+  private calcDateFromTimeString(time_string: string): Date {
+    let date = new Date();
+    let splitDate = time_string.split(':', 3);
+
+    date.setHours(+splitDate[0]);
+    date.setMinutes(+splitDate[1]);
+    date.setSeconds(+splitDate[2]);
+
+    return date;
   }
 }
 

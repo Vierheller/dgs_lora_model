@@ -59,6 +59,11 @@ export const telemetryDictonary = {
     unit: 'km/h ü. GND',
     icon: 'fa fa-rocket'
   },
+  rise: {
+    name: 'Steigen',
+    unit: 'm/s',
+    icon: 'fa fa-arrow-up'
+  },
   direction: {
     name: 'Flugrichtung',
     unit: '°',
