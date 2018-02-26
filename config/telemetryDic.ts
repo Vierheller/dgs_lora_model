@@ -125,24 +125,29 @@ export const telemetryDictonary = {
     icon: ''
   },
   pred_lat: {
-    name: 'Vorhersage Längengrad',
+    name: 'Breitengrad (Landung)',
     unit: '°',
-    icon: ''
+    icon: 'fa fa-arrows-h'
   },
   pred_lng: {
-    name: 'Vorhersage Breitengrad',
+    name: 'Längengrad (Landung)',
     unit: '°',
-    icon: ''
+    icon: 'fa fa-arrows-v'
   },
   pred_landing_speed: {
-    name: 'Landegeschwindigkeit',
+    name: 'Geschwindigkeit (Landung)',
     unit: 'm/s',
-    icon: ''
+    icon: 'fa fa-rocket'
   },
   pred_time_to_landing: {
-    name: 'Zeit bis Landung',
+    name: 'Landung in',
     unit: 'min',
-    icon: ''
+    icon: 'fa fa-clock-o'
+  },
+  pred_dms: {
+    name: 'Koordinaten (Landung)',
+    unit: '',
+    icon: 'fa fa-map-marker'
   },
   timestamp: {
     name: 'Zeit (Empfangen)',

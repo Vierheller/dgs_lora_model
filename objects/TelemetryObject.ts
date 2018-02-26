@@ -100,7 +100,6 @@ export class TelemetryObject implements TelemetryInternal {
     return this.createTelemetryElement(telemetryDictonary.lon, this.lon);
   }
 
-  // convert lat and lon to degree, minute, second format
   public getDMS(): TelemetryElement {
     return this.createTelemetryElement(telemetryDictonary.dms,
       this.calcDegreesToDMS(this.lat) + ' N' + ' ' + this.calcDegreesToDMS(this.lon) + ' E');
@@ -206,7 +205,10 @@ export class TelemetryObject implements TelemetryInternal {
     return this.createTelemetryElement(telemetryDictonary.pred_time_to_landing, this.pred_time_to_landing);
   }
 
-
+  public getPredictedDMS(): TelemetryElement {
+    return this.createTelemetryElement(telemetryDictonary.pred_dms,
+      this.calcDegreesToDMS(this.pred_lat) + ' N' + ' ' + this.calcDegreesToDMS(this.pred_lng) + ' E');
+  }
 
   public getWindDirection(): TelemetryElement {
     let windDir = this.direction - 180;
